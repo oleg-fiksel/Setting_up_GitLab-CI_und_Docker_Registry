@@ -42,9 +42,9 @@ To be able to build docker images using GitLab-CI you have to integrate your org
 
 Follow the documents:
 
-* [docker:latest](docker-latest/README.md)
-* [docker:dind](docker-dind/README.md)
-* [example project](example-project/README.md)
+* [docker:latest](docker-latest/)
+* [docker:dind](docker-dind/)
+* [example project](example-project/)
 
 # Scheduled builds (optional)
 
