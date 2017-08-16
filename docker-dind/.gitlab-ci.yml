@@ -1,0 +1,19 @@
+variables:
+# for performance consider switching to overlay docker filesystem backend
+# https://docs.gitlab.com/ce/ci/docker/using_docker_build.html
+#  DOCKER_DRIVER: overlay
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build_docker_image:
+  stage: build
+  image: $CI_REGISTRY/gitlab-ci/docker:master
+  services:
+    - $CI_REGISTRY/gitlab-ci/dind:master
+  tags:
+    - dind
+  script:
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
